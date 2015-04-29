@@ -1,0 +1,57 @@
+{
+	"baseName": "webapi",
+	"packageName": "com.sen.toy",
+	"entities": [
+		{
+			"name": "robot",
+			"attrs": [
+				{
+					"attrName": "name",
+					"attrType": "String",
+					"minLength": "1",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				}
+			]
+		}
+	],
+	"resources": [
+		{
+			"name": "robot",
+			"methods": [
+				{
+					"methodName": "create",
+					"methodType": "POST",
+					"methodPath": "/{robotName}",
+					"formParams": []
+				},
+				{
+					"methodName": "list",
+					"methodType": "GET",
+					"methodPath": "/list",
+					"formParams": []
+				},
+				{
+					"methodName": "change",
+					"methodType": "PUT",
+					"methodPath": "/{robotName}/position/{command}",
+					"formParams": []
+				},
+				{
+					"methodName": "report",
+					"methodType": "GET",
+					"methodPath": "/{robotName}/position/{positionId}",
+					"formParams": []
+				},
+				{
+					"methodName": "place",
+					"methodType": "POST",
+					"methodPath": "/{robotName}/position",
+					"formParams": [
+					]
+				}
+			]
+		}
+	]
+}
