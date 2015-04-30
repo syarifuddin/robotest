@@ -30,6 +30,13 @@ public class RobotTest {
     }
 
     @Test
+    public void placeRobot_OutsideOfBoard_IsNotAllowed() throws Exception {
+      Position placement = new Position(Angle.NORTH, Width + 1, 1);
+      robot.place(placement);
+      assertNull(robot.getPosition());
+    }
+
+    @Test
     public void testTurnLeft() throws Exception {
         robot.place(originNorth);
         robot.turnLeft();

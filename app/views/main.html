@@ -1,0 +1,11 @@
+<section id='createRobot' ng-include="'templates/createRobot.html'"></section>
+<div class="panel panel-default">
+<div class="panel-heading">
+
+<span>active robot: {{currentRobot.name}} <ng-include src="'templates/robotList.html'"></ng-include>
+</span>, position: {{currentRobot.position}}</div>
+<div class="panel-body">
+<section id="command" ng-include="'templates/command.html'"></section>
+<section id="board" ng-include="'templates/board.html'"></section>
+</div>
+</div>

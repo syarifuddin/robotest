@@ -1,0 +1,8 @@
+    <table class="board" place-robot>
+      <tr ng-repeat="row in board.rows | reverse">
+        <td ng-repeat="cell in row.cells" ng-class="cell.type" class="cell" ng-click="moveRobot()">
+          {{ cell.x }},{{cell.y}}
+          <img src="images/robot.png" id="{{cell.x}}" ng-if="currentRobot.isRobotCurrentPosition(cell)" class="{{currentRobot.position.angle}}"></img>
+        </td>
+      </tr>
+    </table>

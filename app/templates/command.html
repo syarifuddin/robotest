@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <form id="commandForm" class="form-inline">
+  <div class="panel-heading">Command Panel
+          <div class="container">
+        <div class="row">
+        <ng-include src="'templates/angles.html'"></ng-include>
+
+	    <input type="text" class="form-control" id="newPosition" ng-model="robotCommand.position" placeholder="target position x,y"/>
+	    	<button type="button" class="btn btn-default" ng-click="placeRobot()"><i class="glyphicon glyphicon-save"></i>place robot</button>
+	    </div>
+	    </div>
+	    <div class="container">
+	    <div class="row">
+   	  		<button type="button" class="btn btn-default" ng-click="turnLeft()"><i class="glyphicon glyphicon-arrow-left"></i>turn left</button>
+   	  		 <button type="button" class="btn btn-default" ng-click="moveForward()"><i class="glyphicon glyphicon-arrow-up"></i>move forward</button>
+   	  		 <button type="button" class="btn btn-default" ng-click="turnRight()"><i class="glyphicon glyphicon-arrow-right"></i>turn right</button>
+   	  </div>
+   	  </div>
+   	  </div>
+  </form>
+</div>

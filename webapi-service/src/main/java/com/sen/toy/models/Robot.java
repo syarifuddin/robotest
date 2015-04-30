@@ -34,7 +34,9 @@ public class Robot {
     }
 
     public Position place(Position position) {
-        this.position = position;
+        if (board.isValidPosition(position)){
+          this.position = position;
+        }
         return this.position;
     }
 

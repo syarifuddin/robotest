@@ -31,7 +31,7 @@ public class Board {
         return x >= 0 && x < width;
     }
 
-    private boolean isValidPosition(Position position){
+    public boolean isValidPosition(Position position){
         return isValidAxisX(position.getX()) && isValidAxisY(position.getY());
     }
 

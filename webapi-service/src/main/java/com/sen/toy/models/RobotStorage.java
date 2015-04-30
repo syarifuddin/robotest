@@ -11,6 +11,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class RobotStorage {
     private static Set<Robot> ROBOTS = Collections.newSetFromMap(new ConcurrentHashMap<Robot, Boolean>());
+    static {
+      ROBOTS.add(new Robot("R2D2",new Board(5,5)));
+    }
     public static Robot findRobotBy(String name){
         for(Robot robot : ROBOTS){
             if (robot.getName().equalsIgnoreCase(name)) {

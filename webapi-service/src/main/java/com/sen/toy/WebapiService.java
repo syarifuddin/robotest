@@ -70,7 +70,7 @@ public class WebapiService extends Application<WebapiConfiguration> {
         FilterRegistration.Dynamic filter = environment.servlets()
             .addFilter("cors", CrossOriginFilter.class);
 
-        filter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+        filter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*", "/**");
         filter.setInitParameters(params);
     }
 }

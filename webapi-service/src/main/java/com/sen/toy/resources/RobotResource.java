@@ -57,6 +57,22 @@ public class RobotResource {
         return buildResponse(theRobot, theRobot.getPosition()).build();
     }
 
+  @Path("/{robotName}/position/{command}/{positionId}")
+  @POST
+  @Produces(MediaType.APPLICATION_JSON)
+  @Timed
+  public Response changePost(
+
+    @PathParam("robotName") String robotName,
+    @PathParam("command") String command,
+    @PathParam("positionId") String positionId
+  ) {
+
+    Robot theRobot = RobotStorage.findRobotBy(robotName);
+    CommandInvoker.invoke(command, theRobot);
+    return buildResponse(theRobot, theRobot.getPosition()).build();
+  }
+
     @Path("/{robotName}/position/{positionId}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -101,6 +117,11 @@ public class RobotResource {
 
         } catch (IOException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        // robot placement position is rejected e.g : outside of board
+        if (theRobot.getPosition()==null){
+          return Response.status(Response.Status.BAD_REQUEST).build();
         }
         return Response.ok(theRobot.getPosition()).build();
     }
