@@ -4,25 +4,18 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.joda.time.LocalDate;
 
-@Entity
-@Table(name = "robots")
 public class Robot {
 
-    @Id
-    @GeneratedValue
-    private long id;
-
-
-    @NotNull
-    @Column(name = "name")
-    @Size(min = 1)
     private String name;
 
+    private Board board;
 
-    public long getId() {
-        return id;
+    private Position position;
+
+    public Robot(String name, Board board) {
+        this.name = name;
+        this.board = board;
     }
-
 
     public String getName() {
         return name;
@@ -32,25 +25,62 @@ public class Robot {
         this.name = name;
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Position place(Position position) {
+        this.position = position;
+        return this.position;
+    }
+
+    public void turnLeft(){
+        if(isOnBoard()){
+            this.position.turnLeft();
+        }
+    }
+
+    public boolean isOnBoard() {
+        return this.position != null;
+    }
+
+    public void turnRight(){
+        if(isOnBoard()){
+            this.position.turnRight();
+        }
+    }
+
+    public void moveForward(){
+        if (isOnBoard()){
+            this.position = board.moveFrom(position);
+        }
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Robot)) return false;
-        Robot that = (Robot) o;
-        return id == that.id;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Robot robot = (Robot) o;
+
+        return name.equalsIgnoreCase(robot.name);
+
     }
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return name.hashCode();
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Robot{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
+            "name='" + name + '\'' +
+            ", position=" + position +
             '}';
     }
 }
