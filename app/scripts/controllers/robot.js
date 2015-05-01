@@ -38,8 +38,8 @@ angular.module('robotApp')
     };
 
     function setCurrentRobot(res){
-    	console.log(res);
 	      $scope.currentRobot.name = res.data;
+	      $scope.currentRobot.position = initPosition;
 	      return res.data;
     }
     function getCommandPosition(){
@@ -53,11 +53,18 @@ angular.module('robotApp')
     	}
     }
     function setCurrentPosition(res){
-    	$scope.currentRobot.position = angular.fromJson(res.data);
+    	if(isResponseOk(res)) { 
+    		$scope.currentRobot.position = angular.fromJson(res.data);
+    	}
+    	else{
+    		$scope.currentRobot.position = initPosition;
+    	}
+    }
+    function isResponseOk(res){
+    	return res.status === 200;
     }
 
     $scope.createRobot = function(){
-    	console.log('create robot:' + $scope.newRobot.name);
     	robotService.createRobot($scope.newRobot.name)
     	.then(setCurrentRobot)
   		.then(robotService.get)

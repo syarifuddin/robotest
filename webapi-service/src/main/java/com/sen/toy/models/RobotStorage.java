@@ -24,7 +24,10 @@ public class RobotStorage {
     }
 
     public static boolean addNewRobot(Robot robot){
-        return ROBOTS.add(robot);
+        if(findRobotBy(robot.getName()) == null){
+          return ROBOTS.add(robot);
+        }
+        return false;
     }
 
     public static List<String> getAllRobotsName(){
